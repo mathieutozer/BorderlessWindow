@@ -11,11 +11,12 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-  @IBOutlet weak var window: NSWindow!
-
-
+  var windowController: NSWindowController?
+  
   func applicationDidFinishLaunching(_ aNotification: Notification) {
-    // Insert code here to initialize your application
+    let borderlessWindow = BorderlessWindow(contentViewController: ViewController(nibName: nil, bundle: nil)!)
+    windowController = NSWindowController.init(window: borderlessWindow)
+    windowController?.showWindow(self)
   }
 
   func applicationWillTerminate(_ aNotification: Notification) {
